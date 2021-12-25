@@ -15,11 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage {
-	public static BasePage getBasePageObject() {
-		return new BasePage();
-	}
-	
+public class BasePageFactory {
 	protected void openPageUrl(WebDriver driver, String pageUrl) {
 		driver.get(pageUrl);
 	}
@@ -124,16 +120,6 @@ public class BasePage {
 		return By.xpath(xpathLocator);
 	}
 
-	protected void clickToElement(WebDriver driver, String xpathLocator) {
-		getWebElement(driver, xpathLocator).click();
-	}
-	
-	protected void sendkeyToElement(WebDriver driver, String xpathLocator, String textValue) {
-		WebElement element = getWebElement(driver, xpathLocator);
-		element.clear();
-		element.sendKeys(textValue);
-	}
-
 	protected void selectItemInDefaultDropdown(WebDriver driver, String xpathLocator, String textItem) {
 		Select select = new Select(getWebElement(driver, xpathLocator));
 		select.selectByValue(textItem);
@@ -173,10 +159,6 @@ public class BasePage {
 		return getWebElement(driver, xpathLocator).getAttribute(attributeName);
 	}
 	
-	protected String getElementText(WebDriver driver, String xpathLocator) {
-		return getWebElement(driver, xpathLocator).getText();
-	}
-	
 	protected String getElementCssValue(WebDriver driver, String xpathLocator, String propertyName) {
 		return getWebElement(driver, xpathLocator).getCssValue(propertyName);
 	}
@@ -201,10 +183,6 @@ public class BasePage {
 		if (element.isSelected()) {
 			element.click();
 		}
-	}
-
-	protected boolean isElementDisplayed(WebDriver driver, String xpathLocator) {
-		return getWebElement(driver, xpathLocator).isDisplayed();
 	}
 	
 	protected boolean isElementEnabled(WebDriver driver, String xpathLocator) {
@@ -297,37 +275,46 @@ public class BasePage {
 		}
 	}
 	
-	protected void waitForElementVisible(WebDriver driver, String xpathLocator) {
+	protected void waitForElementVisible(WebDriver driver, WebElement element) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, 30);
-		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(xpathLocator)));
+		explicitWait.until(ExpectedConditions.visibilityOf(element));
 	}
 	
-	protected void waitForAllElementVisible(WebDriver driver, String xpathLocator) {
+	protected void waitForAllElementVisible(WebDriver driver, List<WebElement> elements) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, 30);
-		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByXpath(xpathLocator)));
+		explicitWait.until(ExpectedConditions.visibilityOfAllElements(elements));
 	}
 	
-	protected void waitForElementInvisible(WebDriver driver, String xpathLocator) {
+	protected void waitForElementInvisible(WebDriver driver, WebElement element) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, 30);
-		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(xpathLocator)));
+		explicitWait.until(ExpectedConditions.invisibilityOf(element));
 	}
 	
-	protected void waitForAllElementInvisible(WebDriver driver, String xpathLocator) {
+	protected void waitForAllElementInvisible(WebDriver driver, List<WebElement> elements) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, 30);
-		explicitWait.until(ExpectedConditions.invisibilityOfAllElements(getListWebElements(driver, xpathLocator)));
+		explicitWait.until(ExpectedConditions.invisibilityOfAllElements(elements));
 	}
 	
-	protected void waitForElementClickable(WebDriver driver, String xpathLocator) {
+	protected void waitForElementClickable(WebDriver driver, WebElement element) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, 30);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(xpathLocator)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	protected void clickToElement(WebDriver driver, WebElement element) {
+		element.click();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	protected void sendkeyToElement(WebDriver driver, WebElement element, String textValue) {
+		element.clear();
+		element.sendKeys(textValue);
+	}
+
+	protected boolean isElementDisplayed(WebDriver driver, WebElement element) {
+		return element.isDisplayed();
+	}
+
+	protected String getElementText(WebDriver driver, WebElement element) {
+		return element.getText();
+	}
 	
 }
