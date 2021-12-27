@@ -1,5 +1,5 @@
-package pageUI.nopCommerce;
+package pageUI.nopCommerce.user;
 
-public class MyAccountPageUI {
+public class CustomerInfoPageUI {
 	public static final String NEWSLETTER_CHECKBOX = "//input[@id='Newsletter']";
 }

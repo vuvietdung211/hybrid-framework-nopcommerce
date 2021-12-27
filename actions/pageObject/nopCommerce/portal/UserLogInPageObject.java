@@ -1,21 +1,21 @@
-package pageObject.nopCommerce;
+package pageObject.nopCommerce.portal;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUI.nopCommerce.LogInPageUI;
+import pageUI.nopCommerce.user.LogInPageUI;
 
-public class LogInPageObject extends BasePage {
+public class UserLogInPageObject extends BasePage {
 	private WebDriver driver;
 		
-	public LogInPageObject(WebDriver driver) {
+	public UserLogInPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	public HomePageObject clickToLoginButton() {
+	public UserHomePageObject clickToLoginButton() {
 		waitForElementClickable(driver, LogInPageUI.LOGIN_BUTTON);
 		clickToElement(driver, LogInPageUI.LOGIN_BUTTON);
-		 return PageGeneratorManager.getHomePage(driver);
+		 return PageGeneratorManager.getUserHomePage(driver);
 	}
 
 	public String getErrorMessageAtEmailTextBox() {
@@ -36,6 +36,12 @@ public class LogInPageObject extends BasePage {
 	public String getErrorMessageAtHeaderTextBox() {
 		waitForAllElementVisible(driver, LogInPageUI.HEADER_ERROR_MESSAGE);
 		return getElementText(driver, LogInPageUI.HEADER_ERROR_MESSAGE);
+	}
+
+	public UserHomePageObject loginAsUser(String emailadress, String password) {
+		inputToEmailTextBox(emailadress);
+		inputToPasswordTextBox(password);
+		return clickToLoginButton();
 	}
 
 }

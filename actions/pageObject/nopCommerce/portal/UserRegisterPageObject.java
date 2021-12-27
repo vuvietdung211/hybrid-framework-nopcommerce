@@ -1,14 +1,14 @@
-package pageObject.nopCommerce;
+package pageObject.nopCommerce.portal;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUI.nopCommerce.RegisterPageUI;
+import pageUI.nopCommerce.user.RegisterPageUI;
 
-public class RegisterPageObject extends BasePage{
+public class UserRegisterPageObject extends BasePage{
 	private WebDriver driver;
 	
-	public RegisterPageObject(WebDriver driver) {
+	public UserRegisterPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -17,10 +17,10 @@ public class RegisterPageObject extends BasePage{
 		clickToElement(driver, RegisterPageUI.REGISTER_BUTTON);
 	}
 	
-	public HomePageObject clickToLogOutLink() {
+	public UserHomePageObject clickToLogOutLink() {
 		waitForElementClickable(driver, RegisterPageUI.LOG_OUT_LINK);
 		clickToElement(driver, RegisterPageUI.LOG_OUT_LINK);
-		return  PageGeneratorManager.getHomePage(driver);
+		return  PageGeneratorManager.getUserHomePage(driver);
 	}
 	
 	public void inputToFirstNameTextBox(String firstName) {

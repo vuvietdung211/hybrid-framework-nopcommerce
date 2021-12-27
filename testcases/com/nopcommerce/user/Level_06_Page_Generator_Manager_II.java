@@ -8,19 +8,19 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import commons.BaseTest;
-import pageObject.nopCommerce.HomePageObject;
-import pageObject.nopCommerce.LogInPageObject;
-import pageObject.nopCommerce.MyAccountPageObject;
-import pageObject.nopCommerce.RegisterPageObject;
+import pageObject.nopCommerce.portal.UserHomePageObject;
+import pageObject.nopCommerce.portal.UserLogInPageObject;
+import pageObject.nopCommerce.portal.UserCustomerInfoPageObject;
+import pageObject.nopCommerce.portal.UserRegisterPageObject;
 
 
 public class  Level_06_Page_Generator_Manager_II extends BaseTest{
 	private WebDriver driver;
 	private String existingEmail, notFoundEmail, invalidEmail, firstName, lastName, password;
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LogInPageObject loginPage;
-	private MyAccountPageObject myAccountPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLogInPageObject loginPage;
+	private UserCustomerInfoPageObject myAccountPage;
 	
 	@Parameters("browser")
 	@BeforeClass
@@ -28,7 +28,7 @@ public class  Level_06_Page_Generator_Manager_II extends BaseTest{
 		System.out.println("Run on " + browserName);
 		driver = getBrowserDriver(browserName);
 		//1
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 		
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -66,7 +66,7 @@ public class  Level_06_Page_Generator_Manager_II extends BaseTest{
 	@Test
 	public void Login_01_Empty_Data() {
 		System.out.println("Login_01 - Step 1- Click to login link");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.openLoginPage();
 		
 		System.out.println("Login_01 - Step 2 - Click to login button");
 		loginPage.clickToLoginButton();
@@ -80,7 +80,7 @@ public class  Level_06_Page_Generator_Manager_II extends BaseTest{
 	@Test
 	public void Login_02_Invalid_Email() {
 		System.out.println("Login_02 - Step 1 - Click to login link");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.openLoginPage();
 		
 		System.out.println("Login_02 - Step 2 - Input to required field");
 		loginPage.inputToEmailTextBox(invalidEmail);
@@ -96,7 +96,7 @@ public class  Level_06_Page_Generator_Manager_II extends BaseTest{
 	@Test
 	public void Login_03_Email_Not_Found() {
 		System.out.println("Login_03 - Step 1 - Click to login link");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.openLoginPage();
 		
 		System.out.println("Login_03 - Step 1 - Input to required field");
 		loginPage.inputToEmailTextBox(notFoundEmail);
@@ -113,7 +113,7 @@ public class  Level_06_Page_Generator_Manager_II extends BaseTest{
 	public void Login_04_Existing_Email_Empty_Password() {
 		
 		System.out.println("Login_04 - Step 1 - Click to login link ");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.openLoginPage();
 		
 		System.out.println("Login_04 - Step 2 - Input to required field ");
 		loginPage.inputToEmailTextBox(existingEmail);
@@ -131,7 +131,7 @@ public class  Level_06_Page_Generator_Manager_II extends BaseTest{
 	public void Login_05_Existing_Email_Incorrect_Password() {
 
 		System.out.println("Login_05 - Step 1 - Click to login link");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.openLoginPage();
 		
 		System.out.println("Login_05 - Step 2 - Input to required field");
 		loginPage.inputToEmailTextBox(existingEmail);
@@ -148,7 +148,7 @@ public class  Level_06_Page_Generator_Manager_II extends BaseTest{
 	@Test
 	public void Login_06_Valid_Email_Password() {
 		System.out.println("Login_06 - Step 1 - Click to login link - ");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.openLoginPage();
 		
 		System.out.println("Login_05 - Step 2 - Input to required field - ");
 		loginPage.inputToEmailTextBox(existingEmail);
