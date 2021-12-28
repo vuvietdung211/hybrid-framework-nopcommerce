@@ -57,7 +57,7 @@ public class  Level_08_Switch_Role extends BaseTest{
 		userHomePage = userLoginPage.loginAsUser(userEmail, userPassword);
 		
 		userCustomerInfoPage = userHomePage.clickToMyAccountLink();
-		
+		userHomePage = userCustomerInfoPage.clickToLogOutLinkByUser(driver);
 		
 		userHomePage.openPageUrl(driver, GlobalConstants.ADMIN_PAGE_URL);
 		adminLoginPage = PageGeneratorManager.getAdminLoginPage(driver);
