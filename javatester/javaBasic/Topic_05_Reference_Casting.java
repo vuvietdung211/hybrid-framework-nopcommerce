@@ -1,5 +1,8 @@
 package javaBasic;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
 public class Topic_05_Reference_Casting {
 		public String sName;
 		
@@ -33,5 +36,12 @@ public class Topic_05_Reference_Casting {
 			
 			name1.getName();
 			name2.getName();
+			
+			
+			WebDriver driver = null;
+			
+			JavascriptExecutor jsExcecutor = (JavascriptExecutor) driver;
+		
+		String homePageTitle = (String) jsExcecutor.executeScript("return document.title");
 		}
 }

@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 
 import commons.BaseTest;
 import commons.GlobalConstants;
-import pageObject.nopCommerce.admin.AdminDashboardPageObject;
-import pageObject.nopCommerce.admin.AdminLoginPageObject;
+import pageObject.nopCommerce.admin.DashboardPO;
+import pageObject.nopCommerce.admin.LoginPO;
 import pageObject.nopCommerce.portal.PageGeneratorManager;
 import pageObject.nopCommerce.portal.UserCustomerInfoPageObject;
 import pageObject.nopCommerce.portal.UserHomePageObject;
@@ -59,7 +59,7 @@ public class  Level_08_Switch_Role extends BaseTest{
 		userCustomerInfoPage = userHomePage.clickToMyAccountLink();
 		userHomePage = userCustomerInfoPage.clickToLogOutLinkByUser(driver);
 		
-		userHomePage.openPageUrl(driver, GlobalConstants.ADMIN_PAGE_URL);
+		userHomePage.openPageUrl(driver, GlobalConstants.ADMIN_DEV_URL);
 		adminLoginPage = PageGeneratorManager.getAdminLoginPage(driver);
 		
 		// Admin role
@@ -73,7 +73,7 @@ public class  Level_08_Switch_Role extends BaseTest{
 	@Test
 	public void Role_03_Admin_To_User() {
 		// Login Page (admin) -> HomePage(user).open URL
-		adminLoginPage.openPageUrl(driver, GlobalConstants.PORTAL_PAGE_URL);
+		adminLoginPage.openPageUrl(driver, GlobalConstants.PORTAL_DEV_URL);
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
 		
 		// HomePage -> Login Page(user)
@@ -95,8 +95,8 @@ public class  Level_08_Switch_Role extends BaseTest{
 	private UserRegisterPageObject userRegisterPage;
 	private UserLogInPageObject userLoginPage;
 	private UserCustomerInfoPageObject userCustomerInfoPage;
-	private AdminLoginPageObject adminLoginPage;
-	private AdminDashboardPageObject adminDashboard;
+	private LoginPO adminLoginPage;
+	private DashboardPO adminDashboard;
 	
 
 

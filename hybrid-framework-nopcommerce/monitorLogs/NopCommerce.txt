@@ -1,0 +1,18 @@
+[INFO ] [2022-01-17 00:38:27,167] Pre-Condition - STEP 01: Open browser 'firefox' and  navigate to 'https://demo.nopcommerce.com/' 
+[INFO ] [2022-01-17 00:38:34,398] User_01_Register - Step 01: Click to register link
+[INFO ] [2022-01-17 00:38:35,968] User_01_Register - Step 02: Enter to First Name textbox with value automation
+[INFO ] [2022-01-17 00:38:36,043] User_01_Register - Step 03: Enter to Last Name textbox with value fc
+[INFO ] [2022-01-17 00:38:36,087] User_01_Register - Step 04: Enter to Email textbox with value auto2819@mail.vn
+[INFO ] [2022-01-17 00:38:36,140] User_01_Register - Step 05: Enter to Password textbox with value 123456
+[INFO ] [2022-01-17 00:38:36,188] User_01_Register - Step 06: Enter to Confirm Password textbox with value 123456
+[INFO ] [2022-01-17 00:38:36,239] User_01_Register - Step 07: Click to Register button
+[INFO ] [2022-01-17 00:38:38,019] User_01_Register - Step 08: Verify success message displayed
+[INFO ] [2022-01-17 00:38:38,056]  -------------------------- PASSED -------------------------- 
+[INFO ] [2022-01-17 00:38:38,056] User_01_Register - Step 09: Click to Logout link
+[INFO ] [2022-01-17 00:38:39,805] User_02_Login - Step 1: Click to Login link
+[INFO ] [2022-01-17 00:38:40,281] User_02_Login - Step 2: Enter to Email textbox with valueauto2819@mail.vn
+[INFO ] [2022-01-17 00:38:40,331] User_02_Login - Step 3: Enter to Password textbox with value 123456
+[INFO ] [2022-01-17 00:38:40,373] User_02_Login - Step 4: Click to Login Button
+[INFO ] [2022-01-17 00:38:42,086] User_02_Login - Step 5: Verify My Account link is displayed
+[INFO ] [2022-01-17 00:38:42,126]  -------------------------- PASSED -------------------------- 
+[INFO ] [2022-01-17 00:38:42,128] Post-Condition - STEP 01: Close browser

@@ -35,7 +35,7 @@ public class  Level_07_Switch_Page extends BaseTest{
 	}
 
 	@Test
-	public void User_01_Register() {
+	public void User_01_Register_Login() {
 		registerPage =  homePage.clickToRegisterLink();
 		registerPage.inputToFirstNameTextBox(firstName);
 		registerPage.inputToLastNameTextBox(lastName);
@@ -44,12 +44,9 @@ public class  Level_07_Switch_Page extends BaseTest{
 		registerPage.inputToConfirmPasswordTextBox(password);
 		registerPage.clickToRegisterButton();
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
-
+		
 		homePage = registerPage.clickToLogOutLink();
-	}
-
-	@Test
-	public void User_02_Login() {
+		
 		loginPage = homePage.openLoginPage();
 		
 		loginPage.inputToEmailTextBox(emailAddress);
@@ -57,16 +54,13 @@ public class  Level_07_Switch_Page extends BaseTest{
 
 		homePage = loginPage.clickToLoginButton();
 		Assert.assertTrue(homePage.isMyAccountLinkDisplayed());
-	}
-
-	@Test
-	public void User_03_My_Account() {
+		
 		myAccountPage = homePage.clickToMyAccountLink();
 		myAccountPage.clickToNewsletterCheckbox();
 	}
 
 	@Test
-	public void User_04_Switch_Page() {
+	public void User_02_Dynamic_Page() {
 		addressPage = myAccountPage.openAddressPage(driver);
 		changePassword = addressPage.openChangePasswordPage(driver);
 		customerInfo = changePassword.openCustomerInfoPage(driver);

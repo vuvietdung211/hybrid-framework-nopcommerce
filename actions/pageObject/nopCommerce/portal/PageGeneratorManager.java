@@ -2,8 +2,8 @@ package pageObject.nopCommerce.portal;
 
 import org.openqa.selenium.WebDriver;
 
-import pageObject.nopCommerce.admin.AdminDashboardPageObject;
-import pageObject.nopCommerce.admin.AdminLoginPageObject;
+import pageObject.nopCommerce.admin.DashboardPO;
+import pageObject.nopCommerce.admin.LoginPO;
 
 public class PageGeneratorManager {
 	public static UserHomePageObject getUserHomePage(WebDriver driver) {
@@ -30,11 +30,11 @@ public class PageGeneratorManager {
 	public static UserRewardPointPageObject getUserRewardPointPage(WebDriver driver) {
 		return new UserRewardPointPageObject(driver);
 	}
-	public static AdminLoginPageObject getAdminLoginPage(WebDriver driver) {
-		return new AdminLoginPageObject(driver);
+	public static LoginPO getAdminLoginPage(WebDriver driver) {
+		return new LoginPO(driver);
 	}
-	public static AdminDashboardPageObject getAdminDashboardPage(WebDriver driver) {
-		return new AdminDashboardPageObject(driver);
+	public static DashboardPO getAdminDashboardPage(WebDriver driver) {
+		return new DashboardPO(driver);
 	}
 	
 }
