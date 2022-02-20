@@ -7,20 +7,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
 import pageObject.nopCommerce.portal.PageGeneratorManager;
 import pageObject.nopCommerce.portal.UserHomePageObject;
 import pageObject.nopCommerce.portal.UserLogInPageObject;
 import pageObject.nopCommerce.portal.UserRegisterPageObject;
 
-@Epic("Web")
-@Feature("User")
-public class  Level_13_Register_Login_Log_ReportNG extends BaseTest{
+
+public class  Level_13_Register_Login_Allure extends BaseTest{
 	@Parameters({"browser" , "url"})
 	@BeforeClass
 	public void beforeClass(String browserName, String appUrl) {
@@ -34,9 +27,7 @@ public class  Level_13_Register_Login_Log_ReportNG extends BaseTest{
 		password = "123456";
 		
 	}
-	@Story("Register")
-	@Severity(SeverityLevel.NORMAL)
-	@Description("Register to system and check log in success")
+
 	@Test
 	public void User_01_Register_Login() {
 		log.info("User_01_Register - Step 01: Click to register link");
@@ -68,9 +59,6 @@ public class  Level_13_Register_Login_Log_ReportNG extends BaseTest{
 		
 	}
 	
-	@Story("Log in")
-	@Severity(SeverityLevel.NORMAL)
-	@Description("Log in to system with valid data")
 	@Test
 	public void User_02_Login() {
 		log.info("User_02_Login - Step 1: Click to Login link");

@@ -261,7 +261,7 @@ public class BaseTest {
 		try {
 			String workingDir = System.getProperty("user.dir");
 
-			String pathFolderDownload = workingDir + "\\ReportNGScreenshots";
+			String pathFolderDownload = workingDir + "\\allure-json";
 			File file = new File(pathFolderDownload);
 			File[] listOfFiles = file.listFiles();
 			for (int i = 0; i < listOfFiles.length; i++) {
