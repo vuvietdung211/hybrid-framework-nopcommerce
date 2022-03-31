@@ -353,6 +353,11 @@ public class BasePage {
 		action.moveToElement(getWebElement(driver, locatorType)).perform();
 	}
 	
+	public void hoverMouseToElement(WebDriver driver, String locatorType, String...dynamicValues) {
+		Actions action = new Actions(driver);
+		action.moveToElement(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues))).perform();
+	}
+	
 	public void scrollToBottomPage(WebDriver driver) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -589,4 +594,28 @@ public class BasePage {
 		
 	}
 	
+	// HRM 
+	public void openChildSubMenuByPageName(WebDriver driver, String menuPageName, String subMenuPageName, String childSubMenuPageName) {
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
+		hoverMouseToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
+		
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, childSubMenuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, childSubMenuPageName);
+	}
+	public void openSubMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
+	}
+		
+	public void openMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);	
+	}
 }
+

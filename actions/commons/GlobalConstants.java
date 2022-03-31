@@ -16,6 +16,7 @@ public class GlobalConstants {
 	public static final long 	LONG_TIMEOUT = 30;
 	public static final long 	SHORT_TIMEOUT = 5;
 
-
+	public static final String 	DYNAMIC_MENU_PAGE_NAME = "xpath=//div[@id='mainMenu']//a[string()='%s']";
+	
 
 }
