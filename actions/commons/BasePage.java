@@ -1,7 +1,6 @@
 package commons;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -366,11 +365,7 @@ public class BasePage {
 		action.moveToElement(getWebElement(driver, locatorType)).perform();
 	}
 	
-<<<<<<< HEAD
-	public void hoverMouseToElement(WebDriver driver, String locatorType, String... dynamicValues) {
-=======
 	public void hoverMouseToElement(WebDriver driver, String locatorType, String...dynamicValues) {
->>>>>>> branch 'master' of https://github.com/vuvietdung211/hybrid-framework-nopcommerce
 		Actions action = new Actions(driver);
 		action.moveToElement(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues))).perform();
 	}
@@ -508,12 +503,10 @@ public class BasePage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
 	}
 	
-<<<<<<< HEAD
+
 	// User NopCOmmerce
 	
-=======
-// USER NOPCOMMERCE
->>>>>>> branch 'master' of https://github.com/vuvietdung211/hybrid-framework-nopcommerce
+
 	public UserAddressPageObject openAddressPage(WebDriver driver) {
 		waitForElementClickable(driver, UserBasePageUI.ADRESS_LINK);
 		clickToElement(driver, UserBasePageUI.ADRESS_LINK);
@@ -582,12 +575,7 @@ public class BasePage {
 		return PageGeneratorManager.getAdminLoginPage(driver);
 	}
 	
-<<<<<<< HEAD
 	// Admin NopCommerce
-	
-=======
-// ADMIN NOPCOMMERCE
->>>>>>> branch 'master' of https://github.com/vuvietdung211/hybrid-framework-nopcommerce
 	public void openSubMenuPageByName(WebDriver driver, String menuPageName, String submenuPageName) {
 		waitForElementClickable(driver, AdminBasePageUI.MENU_LINK_BY_NAME, menuPageName);
 		clickToElement(driver, AdminBasePageUI.MENU_LINK_BY_NAME, menuPageName);
