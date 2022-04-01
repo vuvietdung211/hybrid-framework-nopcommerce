@@ -366,7 +366,11 @@ public class BasePage {
 		action.moveToElement(getWebElement(driver, locatorType)).perform();
 	}
 	
+<<<<<<< HEAD
 	public void hoverMouseToElement(WebDriver driver, String locatorType, String... dynamicValues) {
+=======
+	public void hoverMouseToElement(WebDriver driver, String locatorType, String...dynamicValues) {
+>>>>>>> branch 'master' of https://github.com/vuvietdung211/hybrid-framework-nopcommerce
 		Actions action = new Actions(driver);
 		action.moveToElement(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues))).perform();
 	}
@@ -504,8 +508,12 @@ public class BasePage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
 	}
 	
+<<<<<<< HEAD
 	// User NopCOmmerce
 	
+=======
+// USER NOPCOMMERCE
+>>>>>>> branch 'master' of https://github.com/vuvietdung211/hybrid-framework-nopcommerce
 	public UserAddressPageObject openAddressPage(WebDriver driver) {
 		waitForElementClickable(driver, UserBasePageUI.ADRESS_LINK);
 		clickToElement(driver, UserBasePageUI.ADRESS_LINK);
@@ -574,8 +582,12 @@ public class BasePage {
 		return PageGeneratorManager.getAdminLoginPage(driver);
 	}
 	
+<<<<<<< HEAD
 	// Admin NopCommerce
 	
+=======
+// ADMIN NOPCOMMERCE
+>>>>>>> branch 'master' of https://github.com/vuvietdung211/hybrid-framework-nopcommerce
 	public void openSubMenuPageByName(WebDriver driver, String menuPageName, String submenuPageName) {
 		waitForElementClickable(driver, AdminBasePageUI.MENU_LINK_BY_NAME, menuPageName);
 		clickToElement(driver, AdminBasePageUI.MENU_LINK_BY_NAME, menuPageName);
@@ -583,6 +595,32 @@ public class BasePage {
 		waitForElementClickable(driver, AdminBasePageUI.SUB_MENU_LINK_BY_NAME, submenuPageName);
 		clickToElement(driver, AdminBasePageUI.SUB_MENU_LINK_BY_NAME, submenuPageName);
 	}
+
+	// HRM ORANGE
+	public void openChildSubMenuByPageName(WebDriver driver, String menuPageName, String subMenuPageName, String childSubMenuPageName) {
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
+		hoverMouseToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
+		
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, childSubMenuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, childSubMenuPageName);
+	}
+	
+	public void openSubMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
+	}
+		
+	public void openMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
+		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
+		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);	
+	}
+
 
 	public void uploadFileAtCardName(WebDriver driver,String cardName, String... fileNames) { 
 		String filePath = GlobalConstants.UPLOAD_FOLDER_PATH; 
@@ -637,3 +675,4 @@ public class BasePage {
 	}
 	
 }
+
