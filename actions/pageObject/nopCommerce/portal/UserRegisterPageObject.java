@@ -101,4 +101,7 @@ public class UserRegisterPageObject extends BasePage{
 		return getElementText(driver, RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
 	}
 
+	
+
+	
 }

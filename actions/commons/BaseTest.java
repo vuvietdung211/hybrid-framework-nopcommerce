@@ -1,6 +1,7 @@
 package commons;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -16,6 +17,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -23,12 +25,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
 	private WebDriver driver;
 	protected final Log log;
-	
+
 // Constructor
 	protected BaseTest() {
 		log = LogFactory.getLog(getClass());
 	}
-	
+
 	protected WebDriver getBrowserDriver(String browserName) {
 		if (browserName.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
@@ -39,10 +41,10 @@ public class BaseTest {
 			options.addArguments("--headless");
 			options.addArguments("window-size=1920x1080");
 			driver = new FirefoxDriver(options);
-		}else if (browserName.equals("chrome")) {
+		} else if (browserName.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
-		} else if (browserName.equals("h_chrome")) {
+//		} else if (browserName.equals("h_chrome")) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--headless");
@@ -67,15 +69,16 @@ public class BaseTest {
 		} else if (browserName.equals("ie")) {
 			WebDriverManager.iedriver().arch32().setup();
 			driver = new InternetExplorerDriver();
-		}else {
+		} else {
 			throw new RuntimeException("Browser name invalid");
 		}
-		
+
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get(GlobalConstants.PORTAL_DEV_URL);
 		return driver;
 	}
+
 	protected WebDriver getBrowserDriver(String browserName, String appURL) {
 		if (browserName.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
@@ -86,7 +89,7 @@ public class BaseTest {
 			options.addArguments("--headless");
 			options.addArguments("window-size=1920x1080");
 			driver = new FirefoxDriver(options);
-		}else if (browserName.equals("chrome")) {
+		} else if (browserName.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (browserName.equals("h_chrome")) {
@@ -114,15 +117,16 @@ public class BaseTest {
 		} else if (browserName.equals("ie")) {
 			WebDriverManager.iedriver().arch32().setup();
 			driver = new InternetExplorerDriver();
-		}else {
+		} else {
 			throw new RuntimeException("Browser name invalid");
 		}
-		
+
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get(appURL);
 		return driver;
 	}
+
 //	protected WebDriver getBrowserDriver(String browserName, String environmentName) {
 //		if (browserName.equals("firefox")) {
 //			WebDriverManager.firefoxdriver().setup();
@@ -245,12 +249,12 @@ public class BaseTest {
 	protected boolean verifyEquals(Object actual, Object expected) {
 		return checkEquals(actual, expected);
 	}
-	
+
 	public int getRamdomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(9999);
 	}
-	
+
 	public WebDriver getDriver() {
 		return this.driver;
 	}
@@ -276,4 +280,66 @@ public class BaseTest {
 		System.out.println("---------- END delete file in folder ----");
 	}
 
+	protected void closeBrowserAndDriver() {
+		String cmd = "";
+		try {
+			String osName = System.getProperty("os.name").toLowerCase();
+			log.info("OS name = " + osName);
+
+			String driverInstanceName = driver.toString().toLowerCase();
+			log.info("Driver instance name = " + osName);
+
+			if (driverInstanceName.contains("chrome")) {
+				if (osName.contains("window")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq chromedriver*\"";
+				} else {
+					cmd = "pkill chromedriver";
+				}
+			} else if (driverInstanceName.contains("internetexplorer")) {
+				if (osName.contains("window")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq IEDriverServer*\"";
+				}
+			} else if (driverInstanceName.contains("firefox")) {
+				if (osName.contains("windows")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq geckodriver*\"";
+				} else {
+					cmd = "pkill geckodriver";
+				}
+			} else if (driverInstanceName.contains("edge")) {
+				if (osName.contains("window")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq msedgedriver*\"";
+				} else {
+					cmd = "pkill msedgedriver";
+				}
+			} else if (driverInstanceName.contains("opera")) {
+				if (osName.contains("window")) {
+					cmd = "taskkill /F /FI \"IMAGENAME eq operadriver*\"";
+				} else {
+					cmd = "pkill operadriver";
+				}
+			} else if (driverInstanceName.contains("safari")) {
+				if (osName.contains("mac")) {
+					cmd = "pkill safaridriver";
+				}
+			}
+
+			if (driver != null) {
+				driver.manage().deleteAllCookies();
+				driver.quit();
+			}
+		} catch (Exception e) {
+			log.info(e.getMessage());
+		} finally {
+			try {
+				Process process = Runtime.getRuntime().exec(cmd);
+				process.waitFor();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
+			        
+	

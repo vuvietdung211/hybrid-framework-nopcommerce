@@ -1,12 +1,14 @@
 package commons;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -50,6 +52,17 @@ public class BasePage {
 		return driver.getCurrentUrl();
 	}
 
+	public Set<Cookie> getAllCookies(WebDriver driver) {
+		return driver.manage().getCookies();
+	}
+	
+	public void setAllCookies(WebDriver driver, Set<Cookie> allCookies) {
+		for (Cookie cookie : allCookies) {
+			driver.manage().addCookie(cookie);
+		}
+		
+	}
+	
 	public void backToPage(WebDriver driver) {
 		driver.navigate().back();
 	}
@@ -353,6 +366,11 @@ public class BasePage {
 		action.moveToElement(getWebElement(driver, locatorType)).perform();
 	}
 	
+	public void hoverMouseToElement(WebDriver driver, String locatorType, String... dynamicValues) {
+		Actions action = new Actions(driver);
+		action.moveToElement(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues))).perform();
+	}
+	
 	public void scrollToBottomPage(WebDriver driver) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -486,6 +504,8 @@ public class BasePage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
 	}
 	
+	// User NopCOmmerce
+	
 	public UserAddressPageObject openAddressPage(WebDriver driver) {
 		waitForElementClickable(driver, UserBasePageUI.ADRESS_LINK);
 		clickToElement(driver, UserBasePageUI.ADRESS_LINK);
@@ -554,6 +574,8 @@ public class BasePage {
 		return PageGeneratorManager.getAdminLoginPage(driver);
 	}
 	
+	// Admin NopCommerce
+	
 	public void openSubMenuPageByName(WebDriver driver, String menuPageName, String submenuPageName) {
 		waitForElementClickable(driver, AdminBasePageUI.MENU_LINK_BY_NAME, menuPageName);
 		clickToElement(driver, AdminBasePageUI.MENU_LINK_BY_NAME, menuPageName);
@@ -587,6 +609,31 @@ public class BasePage {
 			sleepInSecond(2);
 		}
 		
+	}
+	
+	// Parttern Object
+	public void inputToTextboxByID(WebDriver driver, String valueTextbox , String textboxID) {
+		waitForElementVisible(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		sendkeyToElement(driver, UserBasePageUI.DYNAMIC_TEXTBOX_BY_ID, valueTextbox, textboxID);
+	}
+	
+	public void openHeaderPageByName(WebDriver driver, String headerText) {
+		waitForElementClickable(driver, UserBasePageUI.DYNAMIC_PAGE_HEADER, headerText);
+		clickToElement(driver, UserBasePageUI.DYNAMIC_PAGE_HEADER, headerText);
+	}
+	
+	public void clickToGenderRadioButtonByID(WebDriver driver, String valueRadioButtonID) {
+		waitForElementClickable(driver, UserBasePageUI.DYNAMIC_RADIO_BUTTON_BY_ID, valueRadioButtonID);
+		clickToElement(driver, UserBasePageUI.DYNAMIC_RADIO_BUTTON_BY_ID, valueRadioButtonID);
+	}
+
+	public void selectDropDownByName(WebDriver driver, String dropdownName, String itemText) {
+		selectItemInDefaultDropdown(driver, UserBasePageUI.DYNAMIC_DROPDOWN_BY_NAME, itemText, dropdownName);
+	}
+
+	public void clickToButtonByText(WebDriver driver, String buttonText) {
+		waitForElementClickable(driver, UserBasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+		clickToElement(driver, UserBasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
 	}
 	
 }

@@ -1,0 +1,7 @@
+[INFO ] [2022-02-22 22:56:06,733] Pre-Condition - STEP 01: Open browser 'firefox' and  navigate to 'https://demo.nopcommerce.com/' 
+[INFO ] [2022-02-22 22:56:11,590] User_02_Login - Step 1: Click to Login link
+[INFO ] [2022-02-22 22:56:12,311] User_02_Login - Step 2:Set login page cookie
+[INFO ] [2022-02-22 22:56:18,262] User_02_Login - Step 2: Open home page
+[INFO ] [2022-02-22 22:56:18,832] User_02_Login - Step 4: Verify My Account link is displayed
+[INFO ] [2022-02-22 22:56:18,888]  -------------------------- FAILED -------------------------- 
+[INFO ] [2022-02-22 22:56:18,978] Post-Condition - STEP 01: Close browser
