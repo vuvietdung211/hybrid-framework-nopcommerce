@@ -1,4 +1,4 @@
-package com.hrm.employee;
+package pageObject.hrm.employee;
 
 import org.openqa.selenium.WebDriver;
 
@@ -6,10 +6,10 @@ import commons.BasePage;
 import pageObject.nopCommerce.portal.PageGeneratorManager;
 import pageUI.nopCommerce.admin.LoginPageUI;
 
-public class PersonalDetail extends BasePage{
+public class PersonalDetailPO extends BasePage{
 	WebDriver driver;
 
-	public PersonalDetail(WebDriver driver) {
+	public PersonalDetailPO(WebDriver driver) {
 		this.driver = driver;
 	}
 	

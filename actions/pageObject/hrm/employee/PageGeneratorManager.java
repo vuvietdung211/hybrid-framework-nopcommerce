@@ -1,4 +1,4 @@
-package com.hrm.employee;
+package pageObject.hrm.employee;
 
 import org.openqa.selenium.WebDriver;
 
@@ -10,10 +10,10 @@ public class PageGeneratorManager {
 			return new DashBoardPO(driver);
 		}
 		
-		public static PersonalDetail getPersonalDetailPage(WebDriver driver) {
-			return new PersonalDetail(driver);
+		public static PersonalDetailPO getPersonalDetailPage(WebDriver driver) {
+			return new PersonalDetailPO(driver);
 		}
-		public static EmployeeList getEmployeeListPage(WebDriver driver) {
-			return new EmployeeList(driver);
+		public static AddEmployeeListPO getEmployeeListPage(WebDriver driver) {
+			return new AddEmployeeListPO(driver);
 		}
 }

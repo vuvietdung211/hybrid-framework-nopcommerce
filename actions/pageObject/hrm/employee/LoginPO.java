@@ -1,4 +1,4 @@
-package com.hrm.employee;
+package pageObject.hrm.employee;
 
 import org.openqa.selenium.WebDriver;
 
