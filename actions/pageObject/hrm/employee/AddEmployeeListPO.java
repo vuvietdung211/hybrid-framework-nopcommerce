@@ -15,10 +15,6 @@ public class AddEmployeeListPO extends BasePage{
 
 		
 
-	public void selectValueInStatusDropdown() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 
@@ -28,11 +24,6 @@ public class AddEmployeeListPO extends BasePage{
 	}
 
 
-
-	public void openEmployeeListPage() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 		
 }

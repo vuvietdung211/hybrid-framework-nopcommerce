@@ -31,38 +31,41 @@ public class  Level_16_Live_Coding extends BaseTest{
 	@Test
 	public void Employee_01_Add_New_Employee() {
 		log.info("Add_New_01_Step_01:Open Employee List Page ");
-		dashBoardPage.openChildSubMenuByPageName(driver, adminPassword, adminUserName, adminPassword);
+		dashBoardPage.openSubMenuPage(driver, "PIM", "Employee List" );
 		addEmployeeListPage = PageGeneratorManager.getEmployeeListPage(driver);
 		
 		log.info("Add_New_01 - Step_02:Click to 'Add' button");
-		addEmployeeListPage.clickToButtonByID(driver, "");
+		addEmployeeListPage.clickToButtonByID(driver, "btnAdd");
 		
 		log.info("Add_New_01 - Step_03:Input valid value to 'First Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"","");
+		addEmployeeListPage.enterToTextboxByID(driver,"autotest","firstName");
 		
 		log.info("Add_New_01 - Step_04:Input valid value to 'Last Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"","");
+		addEmployeeListPage.enterToTextboxByID(driver,"AFC","lastName");
 		
 		log.info("Add_New_01 - Step_05:Get value of 'Employee ID' ");
-		addEmployeeListPage.getValueTextboxByID(driver, "","");
+		addEmployeeListPage.getValueTextboxByID(driver, "value","employeeId");
+		
+		log.info("Add_New_01 - Step_06:Click to 'Create Login Details' checkbox");
+		
 		
 		log.info("Add_New_01 - Step 07: Enter valid info to 'User Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"","");
+		addEmployeeListPage.enterToTextboxByID(driver,"dung","user_name");
 		
 		log.info("Add_New_01 Step 08: Enter valid info to 'Password' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"","");
+		addEmployeeListPage.enterToTextboxByID(driver,"123456","user_password");
 		
 		log.info("Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"","");
+		addEmployeeListPage.enterToTextboxByID(driver,"123456","re_password");
 		
 		log.info("Add_New_01 Step 10: Select 'Enabled' value in 'Status' dropdown");
-		addEmployeeListPage.selectValueInStatusDropdown();
+		addEmployeeListPage.selectDropdownByID(driver,"Enabled","status");
 		
 		log.info("Add_New_01 - Step 11: Click to 'Save' button");
-		addEmployeeListPage.clickToButtonByID(driver, "");
+		addEmployeeListPage.clickToButtonByID(driver, "btnSave");
 		
 		log.info("Add_New_01 - Step 12: Open 'Employee List' page");
-		addEmployeeListPage.openEmployeeListPage();
+		addEmployeeListPage.openSubMenuPage(driver, "PIM", "Employee List" );
 		
 		log.info("Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox");
 		addEmployeeListPage.enterToTextboxByID(driver,"","");

@@ -300,6 +300,13 @@ public class BasePage {
 		}
 	}
 	
+	public void checkToDefaultCheckBoxRadio(WebDriver driver, String locatorType, String...dynamicValues) {
+		WebElement element = getWebElement(driver, getDynamicXpath(locatorType, dynamicValues));
+		if (!element.isSelected()) {
+			element.click();
+		}
+	}
+	
 	public void uncheckToDefaultCheckBoxRadio(WebDriver driver, String locatorType) {
 		WebElement element = getWebElement(driver, locatorType);
 		if (element.isSelected()) {
@@ -683,5 +690,19 @@ public class BasePage {
 		waitForAllElementVisible(driver,BasePageUI.TEXTBOX_BY_ID , textboxID);
 		getElementAttribute(driver, BasePageUI.TEXTBOX_BY_ID,attributeName, textboxID);
 	}
+
+	// SELECT DROPDOWN BY ID
+	public void selectDropdownByID(WebDriver driver, String textItem, String dropdownID) {
+		waitForElementClickable(driver, BasePageUI.DROPDOWN_BY_ID, dropdownID);
+		selectItemInDefaultDropdown(driver,BasePageUI.DROPDOWN_BY_ID , textItem, dropdownID);
+	}
+	// CHECK TO CHECKBOX BY ID
+	public void checkToCheckBoxByID(WebDriver driver, String checkboxID ) {
+		waitForElementClickable(driver, BasePageUI.CHECKBOX_BY_ID, checkboxID);
+		checkToDefaultCheckBoxRadio(driver, BasePageUI.CHECKBOX_BY_ID, checkboxID);
+	}
+		
 }
+
+
 
