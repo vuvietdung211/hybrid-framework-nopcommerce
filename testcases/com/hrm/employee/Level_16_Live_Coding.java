@@ -7,8 +7,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObject.hrm.employee.DashBoardPO;
 import pageObject.hrm.employee.AddEmployeeListPO;
+import pageObject.hrm.employee.DashBoardPO;
 import pageObject.hrm.employee.LoginPO;
 import pageObject.hrm.employee.PageGeneratorManager;
 import pageObject.hrm.employee.PersonalDetailPO;
@@ -20,10 +20,11 @@ public class  Level_16_Live_Coding extends BaseTest{
 	public void beforeClass(String browserName, String appUrl) {
 		log.info("Pre-Condition - STEP 01: Open browser '" + browserName + "' and  navigate to '" + appUrl + "' ");
 		driver = getBrowserDriver(browserName, appUrl);
-		loginPage = pageObject.hrm.employee.PageGeneratorManager.getLoginPagePage(driver);
+		loginPage = PageGeneratorManager.getLoginPagePage(driver);
 		
-		log.info("Pre-Condition - STEP 01: Log in with usernam = " + adminUserName + "and password = " + adminPassword);
-		loginPage.loginToSytem(driver, "Admin", "admin123");
+		log.info("Pre-Condition - STEP 02: Log in with usernam = " + adminUserName + "and password = " + adminPassword);
+		loginPage.enterToTextboxByID(driver, "Admin", "txtUsername");
+		loginPage.enterToTextboxByID(driver, "admin123", "txtPassword");
 		dashBoardPage = PageGeneratorManager.getDashBoardPage(driver);
 	}
 
@@ -37,37 +38,37 @@ public class  Level_16_Live_Coding extends BaseTest{
 		addEmployeeListPage.clickToButtonByID(driver, "");
 		
 		log.info("Add_New_01 - Step_03:Input valid value to 'First Name' textbox");
-		addEmployeeListPage.enterToFirstNameTextbox("");
+		addEmployeeListPage.enterToTextboxByID(driver,"","");
 		
 		log.info("Add_New_01 - Step_04:Input valid value to 'Last Name' textbox");
-		addEmployeeListPage.enterToLastNameTextbox("");
+		addEmployeeListPage.enterToTextboxByID(driver,"","");
 		
 		log.info("Add_New_01 - Step_05:Get value of 'Employee ID' ");
-		addEmployeeListPage.getEmployeeID();
+		addEmployeeListPage.getValueTextboxByID(driver, "","");
 		
 		log.info("Add_New_01 - Step 07: Enter valid info to 'User Name' textbox");
-		addEmployeeListPage.enterToUserNameTextbox("");
+		addEmployeeListPage.enterToTextboxByID(driver,"","");
 		
 		log.info("Add_New_01 Step 08: Enter valid info to 'Password' textbox");
-		addEmployeeListPage.enterToPasswordTextbox("");
+		addEmployeeListPage.enterToTextboxByID(driver,"","");
 		
 		log.info("Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox");
-		addEmployeeListPage.enterToConfirmPasswordTextbox("");
+		addEmployeeListPage.enterToTextboxByID(driver,"","");
 		
 		log.info("Add_New_01 Step 10: Select 'Enabled' value in 'Status' dropdown");
 		addEmployeeListPage.selectValueInStatusDropdown();
 		
 		log.info("Add_New_01 - Step 11: Click to 'Save' button");
-		addEmployeeListPage.clickToSaveButton();
+		addEmployeeListPage.clickToButtonByID(driver, "");
 		
 		log.info("Add_New_01 - Step 12: Open 'Employee List' page");
 		addEmployeeListPage.openEmployeeListPage();
 		
 		log.info("Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox");
-		addEmployeeListPage.enterToEmployeeNameTextbox();
+		addEmployeeListPage.enterToTextboxByID(driver,"","");
 		
 		log.info("Add_New_01 - Step 14: Click to 'Search' button");
-		addEmployeeListPage.clickToSearchButton();
+		addEmployeeListPage.clickToButtonByID(driver, "");
 		
 		log.info("Add_New_01 - Step 15: Verify Employee Infomation displayed at 'Result Table'");
 		addEmployeeListPage.isEmployeeInfoDisplayedAtTable("", "", "");

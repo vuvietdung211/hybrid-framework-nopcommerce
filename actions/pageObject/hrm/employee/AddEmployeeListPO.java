@@ -13,67 +13,23 @@ public class AddEmployeeListPO extends BasePage{
 		this.driver = driver;
 	}
 
-	public void clickToButtonByID(WebDriver driver2, String string) {
-		// TODO Auto-generated method stub
 		
-	}
-
-	public void enterToFirstNameTextbox(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void enterToLastNameTextbox(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void getEmployeeID() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void enterToUserNameTextbox(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void enterToPasswordTextbox(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void enterToConfirmPasswordTextbox(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void selectValueInStatusDropdown() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void clickToSaveButton() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void openEmployeeListPage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void enterToEmployeeNameTextbox() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void clickToSearchButton() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void isEmployeeInfoDisplayedAtTable(String string, String string2, String string3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void openEmployeeListPage() {
 		// TODO Auto-generated method stub
 		
 	}

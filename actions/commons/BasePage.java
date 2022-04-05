@@ -27,6 +27,7 @@ import pageObject.nopCommerce.portal.UserCustomerInfoPageObject;
 import pageObject.nopCommerce.portal.UserHomePageObject;
 import pageObject.nopCommerce.portal.UserMyProductReviewPageObject;
 import pageObject.nopCommerce.portal.UserRewardPointPageObject;
+import pageUI.hrm.BasePageUI;
 import pageUI.nopCommerce.admin.AdminBasePageUI;
 import pageUI.nopCommerce.user.UserBasePageUI;
 
@@ -584,31 +585,6 @@ public class BasePage {
 		clickToElement(driver, AdminBasePageUI.SUB_MENU_LINK_BY_NAME, submenuPageName);
 	}
 
-	// HRM ORANGE
-	public void openChildSubMenuByPageName(WebDriver driver, String menuPageName, String subMenuPageName, String childSubMenuPageName) {
-		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
-		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
-		
-		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
-		hoverMouseToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
-		
-		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, childSubMenuPageName);
-		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, childSubMenuPageName);
-	}
-	
-	public void openSubMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
-		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
-		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
-		
-		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
-		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, subMenuPageName);
-	}
-		
-	public void openMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
-		waitForElementVisible(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);
-		clickToElement(driver, GlobalConstants.DYNAMIC_MENU_PAGE_NAME, menuPageName);	
-	}
-
 
 	public void uploadFileAtCardName(WebDriver driver,String cardName, String... fileNames) { 
 		String filePath = GlobalConstants.UPLOAD_FOLDER_PATH; 
@@ -662,5 +638,50 @@ public class BasePage {
 		clickToElement(driver, UserBasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
 	}
 	
+	
+	// HRM CHILD SUB MENU
+	public void openChildSubMenuByPageName(WebDriver driver, String menuPageName, String subMenuPageName, String childSubMenuPageName) {
+		waitForElementVisible(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
+		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
+		
+		waitForElementVisible(driver, BasePageUI.MENU_BY_PAGE_NAME, subMenuPageName);
+		hoverMouseToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, subMenuPageName);
+		
+		waitForElementVisible(driver, BasePageUI.MENU_BY_PAGE_NAME, childSubMenuPageName);
+		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, childSubMenuPageName);
+	}
+	
+	// OPEN SUB MENU
+	public void openSubMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
+		waitForElementVisible(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
+		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
+		
+		waitForElementVisible(driver, BasePageUI.MENU_BY_PAGE_NAME, subMenuPageName);
+		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, subMenuPageName);
+	}
+		
+	// OPEN MENU
+	public void openMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
+		waitForElementVisible(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);
+		clickToElement(driver, BasePageUI.MENU_BY_PAGE_NAME, menuPageName);	
+	}
+
+	// CLICK TO BUTTON BY ID
+	public void clickToButtonByID(WebDriver driver, String buttonID) {
+		waitForElementClickable(driver,BasePageUI.BUTTON_BY_ID , buttonID);
+		clickToElement(driver, BasePageUI.BUTTON_BY_ID, buttonID);
+	}
+
+	//ENTER TO TEXTBOX BY ID
+	public void enterToTextboxByID(WebDriver driver, String value, String textboxID) {
+		waitForAllElementVisible(driver,BasePageUI.TEXTBOX_BY_ID , textboxID);
+		sendkeyToElement(driver, BasePageUI.TEXTBOX_BY_ID,value, textboxID);
+	}
+
+	// GET TEXTBOX VALUE BY ID
+	public void getValueTextboxByID(WebDriver driver, String attributeName, String textboxID) {
+		waitForAllElementVisible(driver,BasePageUI.TEXTBOX_BY_ID , textboxID);
+		getElementAttribute(driver, BasePageUI.TEXTBOX_BY_ID,attributeName, textboxID);
+	}
 }
 
