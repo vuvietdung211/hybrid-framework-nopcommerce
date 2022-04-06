@@ -25,6 +25,7 @@ public class  Level_16_Live_Coding extends BaseTest{
 		log.info("Pre-Condition - STEP 02: Log in with usernam = " + adminUserName + "and password = " + adminPassword);
 		loginPage.enterToTextboxByID(driver, "Admin", "txtUsername");
 		loginPage.enterToTextboxByID(driver, "admin123", "txtPassword");
+		loginPage.clickToButtonByID(driver, "btnLogin");
 		dashBoardPage = PageGeneratorManager.getDashBoardPage(driver);
 	}
 
@@ -32,7 +33,7 @@ public class  Level_16_Live_Coding extends BaseTest{
 	public void Employee_01_Add_New_Employee() {
 		log.info("Add_New_01_Step_01:Open Employee List Page ");
 		dashBoardPage.openSubMenuPage(driver, "PIM", "Employee List" );
-		addEmployeeListPage = PageGeneratorManager.getEmployeeListPage(driver);
+		addEmployeeListPage = PageGeneratorManager.getAddEmployeeListPage(driver);
 		
 		log.info("Add_New_01 - Step_02:Click to 'Add' button");
 		addEmployeeListPage.clickToButtonByID(driver, "btnAdd");
@@ -47,7 +48,7 @@ public class  Level_16_Live_Coding extends BaseTest{
 		addEmployeeListPage.getValueTextboxByID(driver, "value","employeeId");
 		
 		log.info("Add_New_01 - Step_06:Click to 'Create Login Details' checkbox");
-		
+		addEmployeeListPage.checkToCheckBoxByLabel(driver, "Create Login Details");
 		
 		log.info("Add_New_01 - Step 07: Enter valid info to 'User Name' textbox");
 		addEmployeeListPage.enterToTextboxByID(driver,"dung","user_name");
@@ -63,15 +64,17 @@ public class  Level_16_Live_Coding extends BaseTest{
 		
 		log.info("Add_New_01 - Step 11: Click to 'Save' button");
 		addEmployeeListPage.clickToButtonByID(driver, "btnSave");
+		personalDetailPage = PageGeneratorManager.getPersonalDetailPage(driver);
 		
 		log.info("Add_New_01 - Step 12: Open 'Employee List' page");
-		addEmployeeListPage.openSubMenuPage(driver, "PIM", "Employee List" );
+		personalDetailPage.openSubMenuPage(driver, "PIM", "Employee List" );
+		addEmployeeListPage = PageGeneratorManager.getAddEmployeeListPage(driver);
 		
 		log.info("Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"","");
+		addEmployeeListPage.enterToTextboxByID(driver,"dung","empsearch_employee_name_empName");
 		
 		log.info("Add_New_01 - Step 14: Click to 'Search' button");
-		addEmployeeListPage.clickToButtonByID(driver, "");
+		addEmployeeListPage.clickToButtonByID(driver, "searchBtn");
 		
 		log.info("Add_New_01 - Step 15: Verify Employee Infomation displayed at 'Result Table'");
 		addEmployeeListPage.isEmployeeInfoDisplayedAtTable("", "", "");

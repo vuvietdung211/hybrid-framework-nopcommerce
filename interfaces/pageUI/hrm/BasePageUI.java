@@ -5,5 +5,6 @@ public class BasePageUI {
 	public static final String BUTTON_BY_ID = "xpath=//input[@id='%s']";
 	public static final String TEXTBOX_BY_ID = "xpath=//input[@id='%s']";
 	public static final String DROPDOWN_BY_ID = "xpath=//select[@id=%s']";
-	public static final String CHECKBOX_BY_ID = "xpath=//input[@id='%s']";
+	public static final String CHECKBOX_BY_LABEL = "xpath=//label[text()='%s']//following-sibling::input";
+	public static final String RADIO_BUTTON_BY_LABEL = "xpath=//label[text()='%s']//preceding-sibling::input";
 }
