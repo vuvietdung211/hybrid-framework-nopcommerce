@@ -404,3 +404,10 @@ Session ID: 5a43d2b5-0c5c-4511-8eb5-4dc7cfb49a1a
 [INFO ] [2022-02-20 21:38:22,872]  -------------------------- FAILED -------------------------- 
 [INFO ] [2022-02-20 21:38:23,098] Post-Condition - STEP 01: Close browser
 >>>>>>> branch 'master' of https://github.com/vuvietdung211/hybrid-framework-nopcommerce
+[INFO ] [2022-04-06 15:09:07,494] Pre-Condition - STEP 01: Open browser 'firefox' and  navigate to 'https://demo.nopcommerce.com/' 
+[INFO ] [2022-04-06 15:09:11,259] User_02_Login - Step 1: Click to Login link
+[INFO ] [2022-04-06 15:09:11,952] User_02_Login - Step 2:Set login page cookie
+[INFO ] [2022-04-06 15:09:17,853] User_02_Login - Step 2: Open home page
+[INFO ] [2022-04-06 15:09:18,312] User_02_Login - Step 4: Verify My Account link is displayed
+[INFO ] [2022-04-06 15:09:18,366]  -------------------------- FAILED -------------------------- 
+[INFO ] [2022-04-06 15:09:18,581] Post-Condition - STEP 01: Close browser
