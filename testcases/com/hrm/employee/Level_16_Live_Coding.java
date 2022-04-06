@@ -71,13 +71,14 @@ public class  Level_16_Live_Coding extends BaseTest{
 		addEmployeeListPage = PageGeneratorManager.getAddEmployeeListPage(driver);
 		
 		log.info("Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"dung","empsearch_employee_name_empName");
+		addEmployeeListPage.enterToTextboxByID(driver,"Anderson","empsearch_employee_name_empName");
 		
 		log.info("Add_New_01 - Step 14: Click to 'Search' button");
 		addEmployeeListPage.clickToButtonByID(driver, "searchBtn");
 		
 		log.info("Add_New_01 - Step 15: Verify Employee Infomation displayed at 'Result Table'");
-		addEmployeeListPage.isEmployeeInfoDisplayedAtTable("", "", "");
+		verifyEquals(addEmployeeListPage.getValueInTableIDAtRowColumnIndex(driver, "resultTable", "Last Name", "1"), "Anderson");
+		
 	}
 	
 	

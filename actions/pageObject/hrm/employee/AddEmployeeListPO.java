@@ -13,15 +13,7 @@ public class AddEmployeeListPO extends BasePage{
 		this.driver = driver;
 	}
 
-		
-
-
-
-
-	public void isEmployeeInfoDisplayedAtTable(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 	

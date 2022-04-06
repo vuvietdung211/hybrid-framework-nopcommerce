@@ -266,11 +266,11 @@ public class BasePage {
 	}
 	
 	public String getElementText(WebDriver driver, String locatorType) {
-		return getWebElement(driver, locatorType).getText();
+		return getWebElement(driver, locatorType).getText().trim();
 	}
 	
 	public String getElementText(WebDriver driver, String locatorType, String... dynamicValues) {
-		return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).getText();
+		return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).getText().trim();
 	}
 	
 	public String getElementCssValue(WebDriver driver, String locatorType, String propertyName) {
@@ -715,6 +715,12 @@ public class BasePage {
 		checkToDefaultCheckBoxRadio(driver, BasePageUI.RADIO_BUTTON_BY_LABEL, radioButtonID);
 	}
 		
+	// CHECK INFO TABLE
+	public String getValueInTableIDAtRowColumnIndex(WebDriver driver,String tableID, String headerName, String rowIndex) {
+		int columnIndex = getElementSize(driver, BasePageUI.TABLE_HEADER_BY_ID_AND_NAME, tableID, headerName) + 1;
+		waitForElementVisible(driver, BasePageUI.TABLE_ROW_BY_COLUMN_INDEX_AND_ROW_INDEX, tableID, rowIndex, String.valueOf(columnIndex));
+		return getElementText(driver, BasePageUI.TABLE_ROW_BY_COLUMN_INDEX_AND_ROW_INDEX, tableID, rowIndex, String.valueOf(columnIndex));
+	}
 }
 
 
