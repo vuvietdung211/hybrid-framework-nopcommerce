@@ -7,11 +7,14 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObject.hrm.employee.AddEmployeeListPO;
-import pageObject.hrm.employee.DashBoardPO;
-import pageObject.hrm.employee.LoginPO;
-import pageObject.hrm.employee.PageGeneratorManager;
-import pageObject.hrm.employee.PersonalDetailPO;
+import commons.GlobalConstants;
+import pageObject.hrm.DashBoardPO;
+import pageObject.hrm.EmployeeListPO;
+import pageObject.hrm.LoginPageObject;
+import pageObject.hrm.MyInfoPO;
+import pageObject.hrm.PageGeneratorManager;
+import pageObject.hrm.PersonalDetailPO;
+import pageObject.nopCommerce.admin.DashboardPO;
 
 
 public class  Level_16_Live_Coding extends BaseTest{
@@ -20,68 +23,140 @@ public class  Level_16_Live_Coding extends BaseTest{
 	public void beforeClass(String browserName, String appUrl) {
 		log.info("Pre-Condition - STEP 01: Open browser '" + browserName + "' and  navigate to '" + appUrl + "' ");
 		driver = getBrowserDriver(browserName, appUrl);
-		loginPage = PageGeneratorManager.getLoginPagePage(driver);
+		loginPage = PageGeneratorManager.getLoginPage(driver);
 		
 		log.info("Pre-Condition - STEP 02: Log in with usernam = " + adminUserName + "and password = " + adminPassword);
 		loginPage.enterToTextboxByID(driver, "Admin", "txtUsername");
 		loginPage.enterToTextboxByID(driver, "admin123", "txtPassword");
 		loginPage.clickToButtonByID(driver, "btnLogin");
-		dashBoardPage = PageGeneratorManager.getDashBoardPage(driver);
+		dashboardPage = PageGeneratorManager.getDashboardPO(driver);
 	}
 
 	@Test
 	public void Employee_01_Add_New_Employee() {
 		log.info("Add_New_01_Step_01:Open Employee List Page ");
-		dashBoardPage.openSubMenuPage(driver, "PIM", "Employee List" );
-		addEmployeeListPage = PageGeneratorManager.getAddEmployeeListPage(driver);
+		dashboardPage.openSubMenuPage(driver, "PIM", "Employee List" );
+		employeeListPage = PageGeneratorManager.getEmployeeList(driver);
 		
 		log.info("Add_New_01 - Step_02:Click to 'Add' button");
-		addEmployeeListPage.clickToButtonByID(driver, "btnAdd");
+		employeeListPage.clickToButtonByID(driver, "btnAdd");
 		
 		log.info("Add_New_01 - Step_03:Input valid value to 'First Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"autotest","firstName");
+		employeeListPage.enterToTextboxByID(driver,"autotest","firstName");
 		
 		log.info("Add_New_01 - Step_04:Input valid value to 'Last Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"AFC","lastName");
+		employeeListPage.enterToTextboxByID(driver,"AFC","lastName");
 		
 		log.info("Add_New_01 - Step_05:Get value of 'Employee ID' ");
-		addEmployeeListPage.getValueTextboxByID(driver, "value","employeeId");
+		employeeListPage.getValueTextboxByID(driver, "value","employeeId");
 		
 		log.info("Add_New_01 - Step_06:Click to 'Create Login Details' checkbox");
-		addEmployeeListPage.checkToCheckBoxByLabel(driver, "Create Login Details");
+		employeeListPage.checkToCheckBoxByLabel(driver, "Create Login Details");
 		
 		log.info("Add_New_01 - Step 07: Enter valid info to 'User Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"dung","user_name");
+		employeeListPage.enterToTextboxByID(driver,"dung","user_name");
 		
 		log.info("Add_New_01 Step 08: Enter valid info to 'Password' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"123456","user_password");
+		employeeListPage.enterToTextboxByID(driver,"123456","user_password");
 		
 		log.info("Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"123456","re_password");
+		employeeListPage.enterToTextboxByID(driver,"123456","re_password");
 		
 		log.info("Add_New_01 Step 10: Select 'Enabled' value in 'Status' dropdown");
-		addEmployeeListPage.selectDropdownByID(driver,"Enabled","status");
+		employeeListPage.selectDropdownByID(driver,"Enabled","status");
 		
 		log.info("Add_New_01 - Step 11: Click to 'Save' button");
-		addEmployeeListPage.clickToButtonByID(driver, "btnSave");
-		personalDetailPage = PageGeneratorManager.getPersonalDetailPage(driver);
+		employeeListPage.clickToButtonByID(driver, "btnSave");
+		personalDetailPage = PageGeneratorManager.getPersonalDetailPO(driver);
 		
 		log.info("Add_New_01 - Step 12: Open 'Employee List' page");
 		personalDetailPage.openSubMenuPage(driver, "PIM", "Employee List" );
-		addEmployeeListPage = PageGeneratorManager.getAddEmployeeListPage(driver);
+		employeeListPage = PageGeneratorManager.getEmployeeList(driver);
 		
 		log.info("Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox");
-		addEmployeeListPage.enterToTextboxByID(driver,"Anderson","empsearch_employee_name_empName");
+		employeeListPage.enterToTextboxByID(driver,"Anderson","empsearch_employee_name_empName");
 		
 		log.info("Add_New_01 - Step 14: Click to 'Search' button");
-		addEmployeeListPage.clickToButtonByID(driver, "searchBtn");
+		employeeListPage.isJQueryAjaxLoadedSuccess(driver);
+		employeeListPage.clickToButtonByID(driver, "searchBtn");
+		employeeListPage.isJQueryAjaxLoadedSuccess(driver);
 		
 		log.info("Add_New_01 - Step 15: Verify Employee Infomation displayed at 'Result Table'");
-		verifyEquals(addEmployeeListPage.getValueInTableIDAtRowColumnIndex(driver, "resultTable", "Last Name", "1"), "Anderson");
+		verifyEquals(employeeListPage.getValueInTableIDAtRowColumnIndex(driver, "resultTable", "Last Name", "1"), "Anderson");
+		
+	}
+	
+
+	@Test
+	public void Employee_02_Upload_Avatar_Employee() {
+		log.info("Upload_Avatar_02 - Step 01: Log in with Employee role");
+		employeeListPage.logoutToSystem(driver);
+		loginPage = PageGeneratorManager.getLoginPage(driver);
+		loginPage.loginToSystem(driver, adminUserName, adminPassword);
+		dashboardPage = PageGeneratorManager.getDashboardPO(driver);
+	
+		
+		log.info("Upload_Avatar_02 - Step 02: Open Personal Detail page");
+		dashboardPage.openMenuPage(driver, "My Info");
+		myInfoPage = PageGeneratorManager.getMyInfoPO(driver);
+		
+		log.info("Upload_Avatar_02 - Step 03: Click to Change Photo image");
+		
+		
+		log.info("Upload_Avatar_02 - Step 04: Upload new photo image");
+		
+		
+		log.info("Upload_Avatar_02 - Step 05: Verify new photo upload is displayed");
+		
 		
 	}
 	
 	
+	@Test
+	public void Employee_03_Update_Info() {
+		log.info("Personal_Detail_03 - Step 01: Open 'Personal Details' tab at Side bar");
+		
+		
+		
+		
+		log.info("Personal_Detail_03 - Step 02: Verify all fields at 'Personal Details' tab are disabled");
+		
+		
+		log.info("Personal_Detail_03 - Step 03: Click to 'Edit' button at 'Personal Details' form");
+		
+		
+		log.info("Personal_Detail_03 - Step 04: Verify 'Employee Id' textbox is disabled");
+		
+		
+		log.info("Personal_Detail_03 - Step 05: Verify 'Driver's License Number' textbox is disabled");
+		
+		
+		log.info("Personal_Detail_03 - Step 06: Verify 'SSN Number' textbox is disabled");
+		
+		
+		log.info("Personal_Detail_03 - Step 07: Verify 'SIN Number' textbox is disabled");
+		
+		
+		log.info("Personal_Detail_03 - Step 08: Verify 'Date of Birth' textbox is disabled");
+		
+		
+		log.info("Personal_Detail_03 - Step 09: Enter new value to 'First Name' textbox");
+		
+		
+		log.info("Personal_Detail_03 - Step 10: Enter new value to 'Last Name' textbox");
+		
+		
+		log.info("Personal_Detail_03 - Step 11: Select new value to 'Gender' radio button");
+		
+		
+		log.info("Personal_Detail_03 - Step 12: Select new value to 'Marital Status' dropdown");
+		
+		
+		log.info("Personal_Detail_03 - Step 13: Select new value to 'Nationality' dropdown");
+		
+		
+		log.info("Personal_Detail_03 - Step 14: ");
+	}
 	
 	
 	
@@ -92,10 +167,12 @@ public class  Level_16_Live_Coding extends BaseTest{
 	}
 	private WebDriver driver;
 
-	LoginPO loginPage;
+	LoginPageObject loginPage;
 	PersonalDetailPO personalDetailPage;
-	AddEmployeeListPO addEmployeeListPage;
-	DashBoardPO dashBoardPage;
+	EmployeeListPO employeeListPage;
+	DashBoardPO dashboardPage;
+	MyInfoPO myInfoPage;
 	String adminUserName = "Admin";
 	String adminPassword = "admin123";
+	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "ninhbinh.jpg";
 }

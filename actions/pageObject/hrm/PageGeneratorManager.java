@@ -2,12 +2,30 @@ package pageObject.hrm;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
-
-public class PageGeneratorManager extends BasePage{
+public class PageGeneratorManager {
 	WebDriver driver;
-	public LoginPO getLoginPage(WebDriver driver) {
-		return new LoginPO(driver);
+	
+	public static LoginPageObject getLoginPage(WebDriver driver) {
+		return new LoginPageObject(driver);
+		
+	}
+	
+	public static EmployeeListPO getEmployeeList(WebDriver driver) {
+		return new EmployeeListPO(driver);
+		
+	}
+	
+	public static PersonalDetailPO getPersonalDetailPO(WebDriver driver) {
+		return new PersonalDetailPO(driver);
+		
+	}
+	
+	public static DashBoardPO getDashboardPO(WebDriver driver) {
+		return new DashBoardPO(driver);
+		
+	}
+	public static MyInfoPO getMyInfoPO(WebDriver driver) {
+		return new MyInfoPO(driver);
 		
 	}
 
