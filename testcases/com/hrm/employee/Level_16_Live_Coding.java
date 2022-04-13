@@ -25,9 +25,19 @@ public class  Level_16_Live_Coding extends BaseTest{
 		driver = getBrowserDriver(browserName, appUrl);
 		loginPage = PageGeneratorManager.getLoginPage(driver);
 		
+		adminUserName = "Admin";
+		adminPassword = "admin123";
+		empFirstName = "Atomation";
+		empLastName = "FC";
+		empUserName = "automation";
+		empPassword = "Automation@123";
+		statusValue = "Enabled";
+		empFullName = empFirstName + " " + empLastName;
+		
+		
 		log.info("Pre-Condition - STEP 02: Log in with usernam = " + adminUserName + "and password = " + adminPassword);
-		loginPage.enterToTextboxByID(driver, "Admin", "txtUsername");
-		loginPage.enterToTextboxByID(driver, "admin123", "txtPassword");
+		loginPage.enterToTextboxByID(driver, adminUserName, "txtUsername");
+		loginPage.enterToTextboxByID(driver, adminPassword, "txtPassword");
 		loginPage.clickToButtonByID(driver, "btnLogin");
 		dashboardPage = PageGeneratorManager.getDashboardPO(driver);
 	}
@@ -42,10 +52,10 @@ public class  Level_16_Live_Coding extends BaseTest{
 		employeeListPage.clickToButtonByID(driver, "btnAdd");
 		
 		log.info("Add_New_01 - Step_03:Input valid value to 'First Name' textbox");
-		employeeListPage.enterToTextboxByID(driver,"autotest","firstName");
+		employeeListPage.enterToTextboxByID(driver,empFirstName,"firstName");
 		
 		log.info("Add_New_01 - Step_04:Input valid value to 'Last Name' textbox");
-		employeeListPage.enterToTextboxByID(driver,"AFC","lastName");
+		employeeListPage.enterToTextboxByID(driver,empLastName,"lastName");
 		
 		log.info("Add_New_01 - Step_05:Get value of 'Employee ID' ");
 		employeeListPage.getValueTextboxByID(driver, "value","employeeId");
@@ -54,13 +64,13 @@ public class  Level_16_Live_Coding extends BaseTest{
 		employeeListPage.checkToCheckBoxByLabel(driver, "Create Login Details");
 		
 		log.info("Add_New_01 - Step 07: Enter valid info to 'User Name' textbox");
-		employeeListPage.enterToTextboxByID(driver,"dung","user_name");
+		employeeListPage.enterToTextboxByID(driver, empUserName,"user_name");
 		
 		log.info("Add_New_01 Step 08: Enter valid info to 'Password' textbox");
-		employeeListPage.enterToTextboxByID(driver,"123456","user_password");
+		employeeListPage.enterToTextboxByID(driver, empPassword,"user_password");
 		
 		log.info("Add_New_01 - Step 09: Enter valid info to 'Confirm Password' textbox");
-		employeeListPage.enterToTextboxByID(driver,"123456","re_password");
+		employeeListPage.enterToTextboxByID(driver, empPassword,"re_password");
 		
 		log.info("Add_New_01 Step 10: Select 'Enabled' value in 'Status' dropdown");
 		employeeListPage.selectDropdownByID(driver,"Enabled","status");
@@ -74,7 +84,7 @@ public class  Level_16_Live_Coding extends BaseTest{
 		employeeListPage = PageGeneratorManager.getEmployeeList(driver);
 		
 		log.info("Add_New_01 - Step 13: Enter valid info to 'Employee Name' textbox");
-		employeeListPage.enterToTextboxByID(driver,"Anderson","empsearch_employee_name_empName");
+		employeeListPage.enterToTextboxByID(driver, empFullName,"empsearch_employee_name_empName");
 		
 		log.info("Add_New_01 - Step 14: Click to 'Search' button");
 		employeeListPage.isJQueryAjaxLoadedSuccess(driver);
@@ -92,31 +102,32 @@ public class  Level_16_Live_Coding extends BaseTest{
 		log.info("Upload_Avatar_02 - Step 01: Log in with Employee role");
 		employeeListPage.logoutToSystem(driver);
 		loginPage = PageGeneratorManager.getLoginPage(driver);
-		loginPage.loginToSystem(driver, adminUserName, adminPassword);
+		loginPage.loginToSystem(driver, empUserName, empPassword);
 		dashboardPage = PageGeneratorManager.getDashboardPO(driver);
 	
 		
 		log.info("Upload_Avatar_02 - Step 02: Open Personal Detail page");
 		dashboardPage.openMenuPage(driver, "My Info");
-		myInfoPage = PageGeneratorManager.getMyInfoPO(driver);
+		personalDetailPage = PageGeneratorManager.getPersonalDetailPO(driver);
 		
 		log.info("Upload_Avatar_02 - Step 03: Click to Change Photo image");
-		
+		personalDetailPage.clickToChangePhotoImage();
 		
 		log.info("Upload_Avatar_02 - Step 04: Upload new photo image");
+		personalDetailPage.uploadImage(driver, avatarFilePath);
 		
+		log.info("Upload_Avatar_02 - Step 04: Upload new photo image");
+		personalDetailPage.clickToButtonByID(driver, "btnSave");
 		
 		log.info("Upload_Avatar_02 - Step 05: Verify new photo upload is displayed");
-		
-		
+		personalDetailPage.isUploadAvatarSuccessMessageDisplayed();
+		personalDetailPage.isNewAvatarImageDisplayed();
+			
 	}
-	
 	
 	@Test
 	public void Employee_03_Update_Info() {
 		log.info("Personal_Detail_03 - Step 01: Open 'Personal Details' tab at Side bar");
-		
-		
 		
 		
 		log.info("Personal_Detail_03 - Step 02: Verify all fields at 'Personal Details' tab are disabled");
@@ -172,7 +183,7 @@ public class  Level_16_Live_Coding extends BaseTest{
 	EmployeeListPO employeeListPage;
 	DashBoardPO dashboardPage;
 	MyInfoPO myInfoPage;
-	String adminUserName = "Admin";
-	String adminPassword = "admin123";
+	String adminUserName, adminPassword, empFirstName, empLastName, empUserName, empPassword, employeeID, statusValue;
+	String empFullName;
 	String avatarFilePath = GlobalConstants.UPLOAD_FOLDER_PATH + "ninhbinh.jpg";
 }

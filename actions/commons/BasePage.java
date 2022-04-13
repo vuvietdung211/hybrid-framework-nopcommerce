@@ -791,6 +791,7 @@ public class BasePage {
 		isElementEnabled(driver, BasePageUI.ANY_FIELD_BY_ID, fieldID);
 	}
 	
+	// UPLOAD FILE HRM
 	public void uploadImage(WebDriver driver, String filePath) {
 		getWebElement(driver, BasePageUI.UPLOAD_FILE).sendKeys(filePath);
 		
