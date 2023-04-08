@@ -4,10 +4,12 @@
 
 	
 <parameter name ="url" value ="https://demo.nopcommerce.com/"/>
- 
- <listeners>
+    <parameter name ="browser" value ="chrome"/>
+
+
+    <listeners>
 <!-- 		<listener class-name ="commons.MethodListener"/> -->
-		<listener class-name ="reportConfig.AllureTestListener"/>
+		<listener class-name ="actions.reportConfig.AllureTestListener"/>
 	</listeners>
   
   
@@ -15,7 +17,7 @@
   <test name="Run on Chrome">
   	<parameter name ="browser" value ="firefox"/>
     <classes>
-      <class name="com.nopcommerce.common.Common_01_Login"/>
+      <class name=""/>
       <class name="com.nopcommerce.user.Level_14_Register_Login_Share_State"/>
     </classes>
   </test>

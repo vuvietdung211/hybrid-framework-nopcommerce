@@ -16,10 +16,10 @@ import pageObject.nopCommerce.admin.ProductSearchPO;
 
 
 public class  Level_11_Upload extends BaseTest{
-	@Parameters({"browser", "url"})
+	@Parameters({"browser", "server", "role"})
 	@BeforeClass
-	public void beforeClass(String browserName, String appURL) {
-		driver = getBrowserDriver(browserName, appURL);
+	public void beforeClass(String browserName, String serverName, String roleName) {
+		driver = getBrowserDriver(browserName, serverName, roleName);
 		loginPage = AdminPageGeneratorManager.getAdminLoginPage(driver);
 		
 		loginPage.inputToEmailTextbox("admin@yourstore.com");
@@ -34,7 +34,7 @@ public class  Level_11_Upload extends BaseTest{
 		productSearchPage.clickToSearchButton();
 		
 		productDetailPage = productSearchPage.clickToEditButtonByProductName(productName);
-		
+		   vb bhhxxxx
 	}
 
 	@Test

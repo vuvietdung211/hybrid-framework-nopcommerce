@@ -1,0 +1,13 @@
+{
+    "Login": {
+        "emailAddress": "afc",
+        "webEmail": "@gmail.com",
+        "password": "Automation",
+        "lastname": "FC"
+    },
+    "address": "123 PO",
+    "city": "Los Angeles",
+    "Register":{
+        "phone number": "0987695747"
+    }
+}
